@@ -1,0 +1,84 @@
+*{
+    margin:0px;
+    padding: 0px;
+}
+
+.font-normal{
+    font-size: 2em;
+}
+
+
+.kontainer-utama{
+    display: flex;
+    flex-direction: column;
+}
+.kontainer1{
+    background-color: orchid;
+    height: 40vh;
+    order:-2
+}
+.font-putih{
+    color: white;
+}
+.ketengah{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.kontainer2{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.feature:nth-child(1){
+    background-color: tomato;
+}
+.feature:nth-child(3){
+    background-color: khaki;
+}
+.feature:nth-child(2){
+    background-color: lightgreen;
+}
+/* .warna1{
+    background-color: turquoise;
+}
+.warna2{
+
+} */
+.signup{
+    width: 100%;
+    background-color: lightblue;
+    height: 20vh;
+}
+.feature{
+    width: 33.3%;
+    height: 20vh;
+}
+
+.kontainer3{
+    background-color: lightseagreen;
+    height: 35vh;
+}
+/* for tablet */
+@media only screen and (max-width: 768px){
+    .kontainer3{
+        order: -1;
+    }
+    .signup{
+        order:-1;
+        width: 50%;
+    }
+    .feature{
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 576px){
+    .signup{
+        width: 100%;
+    }
+    .feature{
+        width: 100%;
+    }
+}

@@ -76,9 +76,9 @@
 }
 /* for tablet */
 @media only screen and (max-width: 768px){
-    .font-putih{
+    /* .font-putih{
         color: red;
-    }
+    } */
     .hero{
         height: 40vh;
     }
@@ -86,7 +86,7 @@
         display: none;
     }
     .container3 .menu{
-        display: block;
+        display: flex;
         flex: 1;
     }
     .container3{
@@ -117,7 +117,27 @@
 
 /* for mobile */
 @media only screen and (max-width:576px){
-    .font-putih{
+    /* .font-putih{
         color: orange;
+    } */
+    .menu{
+        display: flex;
+        /* text-align: center; */
+    }
+    .container1{
+        flex-direction: column;
+    }
+    .header,.menu{
+        flex: 1;
+    }
+    .hero{
+        height: 35vh;
+    }
+    .container3 .menu{
+        display: none;
+    }
+    .container4-1 .container4-1-2{
+        flex-direction: column;
+        height: 20vh;
     }
 }
