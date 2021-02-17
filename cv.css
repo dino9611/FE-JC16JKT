@@ -1,0 +1,57 @@
+*{
+    font-family: sans-serif;
+   
+}
+:root{
+    /* font-size: 20px; */
+    --besarfont:20px
+}
+
+body{
+    border: cornflowerblue 1px solid;
+}
+.foto-round{
+    height: 120px;
+    border-radius: 75px;
+    width: 120px;
+    
+    border: 1px solid yellowgreen;
+    overflow: hidden;
+}
+.colored-font{
+    color: cornflowerblue;
+}
+
+.skills{
+    border: 1px solid cornflowerblue;
+    background-color: transparent;
+    color: cornflowerblue;
+    font-weight: 700;
+    margin: 0px 10px;
+    padding: 10px;
+}
+
+.hire{
+    /* background-color: cornflowerblue;
+    color: white;
+    border: 2px solid white; */
+    height: 100px;
+    width: 150px;
+    font-size: var(--besarfont);
+    font-weight: 700;
+    border-radius: 5px;
+    background-color: white;
+    color: cornflowerblue;
+    border: 2px solid cornflowerblue;
+    transition: 500ms;
+    cursor: pointer;
+    padding: 20px;
+    margin: 20px;
+}
+.hire:hover{
+    background-color: white;
+    color: cornflowerblue;
+    border: 2px solid cornflowerblue;
+    transition: 500ms;
+    cursor: pointer;
+}

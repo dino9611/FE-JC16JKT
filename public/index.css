@@ -1,0 +1,49 @@
+html{
+    font-family:  sans-serif;
+
+}
+
+p {
+    background-color: sandybrown;
+}
+p::first-line {
+    color: red;
+    
+}
+
+p:hover{
+    background-color: darkcyan;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+#user{
+    color: crimson;
+}
+
+.background-biru{
+   background-color: cornflowerblue; 
+   
+}
+
+.text-crims{
+    color: crimson;
+}
+
+.button{
+    background-color: rgba(1, 119, 119, 0.568);
+    border: 1px solid white;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    height: 50px;
+    width: 100px;
+    box-shadow: 2px 2px 2px #888888 ;
+}
+.button:hover{
+    background-color: white;
+    border: 2px solid darkcyan;
+    color: darkcyan;
+    transition: 500ms;
+}
+
