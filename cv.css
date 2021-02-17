@@ -1,6 +1,6 @@
 *{
     font-family: sans-serif;
-   
+  
 }
 :root{
     /* font-size: 20px; */
@@ -9,19 +9,26 @@
 
 body{
     border: cornflowerblue 1px solid;
+    margin: 0px;
+    padding: 0px;
 }
 .foto-round{
     height: 120px;
     border-radius: 75px;
     width: 120px;
-    
-    border: 1px solid yellowgreen;
-    overflow: hidden;
+    /* border: 1px solid yellowgreen; */
+    /* transform: scale(1.5); */
+}
+.container > .font-warna{
+    color: red ;
 }
 .colored-font{
-    color: cornflowerblue;
+    color: cornflowerblue ;
 }
 
+.huruf-gede,p{
+    font-size: 2em;
+}
 .skills{
     border: 1px solid cornflowerblue;
     background-color: transparent;

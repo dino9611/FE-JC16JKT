@@ -1,2 +1,4 @@
-# Day 1 
+# Day 2
 # FRONTEND
+
+# HTML & CSS

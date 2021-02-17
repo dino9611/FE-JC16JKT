@@ -1,0 +1,52 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.tinggi{
+    height: 100px;
+    width: 33.3%;
+    /* text-align: cente */
+    /* margin: 0px 5px; */
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    /* border: 1px solid orange; */
+}
+
+.warna1{
+    background-color: yellow;
+    
+}
+
+.warna2{
+    background-color: green;
+    /* order: 3; */
+
+}
+.warna3{
+    background-color: royalblue;
+    /* order: 2; */
+    /* flex: 1; */
+}
+.warna4{
+    background-color: lightcoral;
+    /* order:1; */
+    /* flex: 1; */
+    /* align-self: flex-end; */
+}
+
+.warna5{
+    background-color: lightgray;
+    /* flex: 1; */
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    /* height: 20vh; */
+    /* flex-direction: column; */
+    background-color: lightblue;
+    /* justify-content: ; */
+    /* align-items: flex-end; */
+}
