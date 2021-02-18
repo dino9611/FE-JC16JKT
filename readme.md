@@ -1,4 +1,4 @@
-# Day 2
+# Day 3
 # FRONTEND
 
-# HTML & CSS
+# Project HTML CSS
