@@ -8,24 +8,23 @@ const palingdrome=(kata)=>{
         var output=0
         var arrnewkata=kata.split('')
         console.log(arrnewkata)
+        var tambahkata=''
         while(true){
             
-            var katabaru=kata
+            tambahkata= arrnewkata[output]+tambahkata
+            var katabaru=kata+tambahkata
             output++
-            for(let i=output-1;i>=0;i--){
-                katabaru+=arrnewkata[i]
-            }
             var pembanding=katabaru.split('').reverse().join('')
             // console.log(pembanding)
             if(katabaru == pembanding){
                 break
             }
-            
         }
+        console.log(katabaru)
         
         return output
     }
 }
 
 
-console.log(palingdrome('sit'))
+console.log(palingdrome('shall'))
