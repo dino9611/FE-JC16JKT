@@ -260,12 +260,18 @@
         /* height: 100px; */
         font-size: 1em;
         text-align: center;
+        border-bottom: 1px var(--textsecondary) solid;
         /* margin-left: -10%; */
+        padding-bottom: 1px;
         /* background-color: black; */
+    }
+    .input:focus{
+        border-bottom: 1px var(--textsecondary) solid;
+        padding-bottom: 5px;
     }
     .layer .tmbl{
         width: 90%;
-        margin-top: 2%;
+        margin-top: 4%;
         font-size: 1em;
         padding: 3% 0px;
     }
