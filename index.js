@@ -9,7 +9,7 @@ const palingdrome=(kata)=>{
         var arrnewkata=kata.split('')
         console.log(arrnewkata)
         while(true){
-     
+            
             var katabaru=kata
             output++
             for(let i=output-1;i>=0;i--){
