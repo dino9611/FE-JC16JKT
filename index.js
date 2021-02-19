@@ -7,7 +7,7 @@ const palingdrome=(kata)=>{
     }else{
         var output=0
         var arrnewkata=kata.split('')
-        console.log(arrnewkata)
+        // console.log(arrnewkata)
         var tambahkata=''
         while(true){
             
