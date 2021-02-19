@@ -54,7 +54,7 @@
         </div>
     </div>
     <div class="prijumbo2">
-        <div class="card">
+        <!-- <div class="card">
             <div class="text-1">
                 Free
             </div>
@@ -91,17 +91,17 @@
             </div>
             <div class="text-3">
                 per month
-            </div>
+            </div> 
             <div class="tmbl">
                 Get Started
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="trust">
         Trusted Company
     </div>
     <div class="prijumbo3">
-        <div>
+        <!-- <div>
             <img src="./images/brand-amazon.svg" height="100%" alt="brand1">
         </div>
         <div>
@@ -118,10 +118,85 @@
         </div>
         <div>
             <img src="./images/brand-ibm.svg" height="100%" alt="brand5">
-        </div>
+        </div> -->
     </div>
 </body>
 
+<script>
+    
+    class Pricing{
+        constructor(_status,_harga,_waktu){
+            this.status=_status
+            this.harga=_harga
+            this.waktu=_waktu
+        }
+    }
+
+    var prices=[
+        new Pricing('Free',0,"Life"),
+        new Pricing('Premium',39,"Month"),
+        new Pricing('Enterprise',100,"Month"),
+    ]
+
+    var companies=[
+        {nama:'amazon',foto:'./images/brand-amazon.svg'},
+        {nama:'disney',foto:'./images/brand-disney.svg'},
+        {nama:'alibaba',foto:'./images/brand-alibaba.svg'},
+        {nama:'ibm',foto:'./images/brand-ibm.svg'},
+        {nama:'espn',foto:'./images/brand-espn.svg'},
+    ]
+
+    const PrintComp=()=>{
+        var result=companies.map((val)=>{
+            return `<div>
+                        <img src=${val.foto} height="100%" alt=${val.nama}>
+                    </div>`
+        })
+        document.querySelector('.prijumbo3').innerHTML=result.join('')
+    }
+
+    const PrintPrice=()=>{
+
+        var result=prices.map((val)=>{
+            if(val.status == 'Premium'){
+                return ` <div class="card tengah">
+                            <div class="text-1">
+                                ${val.status}
+                            </div>
+                            <div class="text-2">
+                                $${val.harga}
+                            </div>
+                            <div class="text-3">
+                                per ${val.waktu}
+                            </div>
+                            <div class="tmbl">
+                                Get Started
+                            </div>
+                        </div>`
+            }
+            return `
+            <div class="card">
+                <div class="text-1">
+                    ${val.status}
+                </div>
+                <div class="text-2">
+                    $${val.harga}
+                </div>
+                <div class="text-3">
+                    per ${val.waktu}
+                </div>
+                <div class="tmbl">
+                    Get Started
+                </div>
+            </div>
+            `
+        })
+        document.getElementsByClassName('prijumbo2')[0].innerHTML=result.join('')
+    }
+
+    PrintPrice()
+    PrintComp()
+</script>
 
 
 </html>
