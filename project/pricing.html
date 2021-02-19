@@ -18,9 +18,9 @@
             </a>
         </div>
         <div class="bar">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars" onclick="barclick()"></i>
         </div>
-        <div class="headerMenu">
+        <div class="headerMenu" id='headerMenu'>
             <ul class="menu">
                 <li>About</li>
                 <li>Resources</li>
@@ -41,7 +41,7 @@
                 Upgrade are as simple as installing new Plugins
             </div>
             <div class="layer1-3">
-                <div class="years">
+                <div class="years" onclick="pencet()" >
                     Yearly
                 </div>
                 <div class="month">
@@ -121,8 +121,9 @@
         </div> -->
     </div>
 </body>
-
+<script src="./bar.js"></script>
 <script>
+
     
     class Pricing{
         constructor(_status,_harga,_waktu){
@@ -153,6 +154,7 @@
                     </div>`
         })
         document.querySelector('.prijumbo3').innerHTML=result.join('')
+        
     }
 
     const PrintPrice=()=>{
@@ -169,7 +171,7 @@
                             <div class="text-3">
                                 per ${val.waktu}
                             </div>
-                            <div class="tmbl">
+                            <div class="tmbl" onclick=")">
                                 Get Started
                             </div>
                         </div>`
@@ -193,7 +195,18 @@
         })
         document.getElementsByClassName('prijumbo2')[0].innerHTML=result.join('')
     }
+    var hitam=false
+    const pencet=()=>{
+        if(hitam){
+            document.querySelector('.layer1-1').style.color='#fcb30c'
+            document.querySelector('.layer1-1').style.fontSize='3em'
+        }else{
+            document.querySelector('.layer1-1').style.fontSize='1em'
+            document.querySelector('.layer1-1').style.color='#1b1b1b'
 
+        }
+        hitam=!hitam
+    }
     PrintPrice()
     PrintComp()
 </script>

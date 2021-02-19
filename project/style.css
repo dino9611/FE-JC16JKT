@@ -186,8 +186,31 @@ a{
         .bar{
             display: block;
         }
+        .containerHead{
+            flex-wrap: wrap;
+        }
         .headerMenu{
             display: none;
+            /* height: 0px; */
+            width: 100%;
+            /* transition: 1s; */
+            flex-direction: column;
+        }
+        .menu{
+            flex-direction: column;
+            margin-bottom: 20px;
+            /* background-color: var(--color_primary); */
+        }
+        .menu > li{
+            margin: 0px;
+            margin-top: 5%;
+            
+        }
+        .login{
+            margin-top: 100px;
+            width: 90%;
+            height: 2vh;
+            margin: 0px;
         }
       
     /* header stop */

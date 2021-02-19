@@ -25,6 +25,7 @@
    font-weight: 700;
    color: var(--color_primary);
    text-align: center;
+   transition: 1s;
 }
 .layer1-2{
     text-align: center;
