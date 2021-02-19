@@ -3,6 +3,7 @@
     padding: 0px;
     font-family: 'Roboto', sans-serif;
     color: var(--textprimary);
+    scroll-behavior: smooth;
 }
 
 :root{
@@ -11,6 +12,12 @@
     --textsecondary:#9f9f9f
 }
 
+a{
+    text-decoration: none;
+}
+.menu a:hover{
+    color: var(--color_primary);
+}
 
 /* header start */
 .bg-kuning{
@@ -36,9 +43,18 @@
     padding: 1.5% 10%;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+ 
+    background-color: white;
 }
 .paddingproj{
     padding: 1.5% 10%;
+}
+.paddingproj1{
+    padding: 10%;
 }
 .headerMenu{
     /* background-color: lightpink; */
@@ -232,7 +248,9 @@
     }
     /* header stop */
     /* jumbotron1 start */
-
+    .paddingproj1{
+        padding: 14% 10%;
+    }
     .jumbotron1{
         flex-direction: column;
     }
