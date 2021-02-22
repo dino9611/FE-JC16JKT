@@ -1,4 +1,4 @@
-# Day 4
+# Day 5
 # FRONTEND
 
-# Project HTML CSS ver 2
+# Project Bootstrap (css library)
