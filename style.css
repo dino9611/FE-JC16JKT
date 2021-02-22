@@ -1,0 +1,46 @@
+*{
+    margin:0px;
+    padding: 0px;
+}
+
+
+
+.kotak{
+    height: 60vh;
+}
+.kotakkecil{
+    height: 20vh;
+}
+.kotakfoto{
+    height: 80%;
+    position: relative;
+    overflow: hidden;
+    /* background-color: black; */
+}
+.kotaktulisan{
+    height: 20%;
+}
+
+.bulat{
+    position: absolute;
+    background-color: white;
+    width: 10%;
+    height: 5vh;
+    border-radius: 2.5vh;
+    top: 0;
+    bottom: 0;
+ 
+    right: 0;
+    margin: 10px;
+    z-index: 2;
+    /* right: 0px; */
+    color: black;
+}
+
+.gede{
+    transition: 1s;
+}
+.gede:hover{
+    transform: scale(1.2);
+    /* transition: 1s; */
+}
