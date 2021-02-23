@@ -1,3 +1,9 @@
+# Day 6
+
+## belajar react
+
+intro react, component & props ,lifescycle method, state
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
