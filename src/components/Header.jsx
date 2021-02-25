@@ -13,6 +13,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import { Link, NavLink as LinkRouter } from "react-router-dom";
 
 class Header extends Component {
   state = {
@@ -24,17 +25,21 @@ class Header extends Component {
   render() {
     return (
       <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/">CRUD</NavbarBrand>
+        <NavbarBrand>
+          <Link to="/">CRUD</Link>
+        </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Components</NavLink>
+              {/* <Link to="/about">About</Link> */}
+              {/* <NavLink onClick={() => this.props.pindahpage("/about")}>
+                About
+              </NavLink> */}
+              <LinkRouter to="/corona"> CORONA</LinkRouter>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
+              <Link to="/about">About</Link>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
