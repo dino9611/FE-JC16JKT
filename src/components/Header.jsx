@@ -7,7 +7,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -36,10 +35,19 @@ class Header extends Component {
               {/* <NavLink onClick={() => this.props.pindahpage("/about")}>
                 About
               </NavLink> */}
-              <LinkRouter to="/corona"> CORONA</LinkRouter>
+              <LinkRouter to="/corona" className="mx-2">
+                CORONA
+              </LinkRouter>
             </NavItem>
             <NavItem>
-              <Link to="/about">About</Link>
+              <Link to="/about" className="mx-2">
+                About
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link to="/home2" className="mx-2">
+                Home2
+              </Link>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>

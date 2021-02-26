@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import About from "./pages/about";
 import Product from "./pages/product";
 import Corona from "./pages/corona";
+import Home2 from "./pages/Home2";
 class App extends Component {
   state = {
     // page: "/",
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="/about" component={About} />
             <Route path="/product/:bebas" component={Product} />
             <Route path="/corona" component={Corona} />
+            <Route path="/home2" component={Home2} />
           </Switch>
         </div>
         <ToastContainer />

@@ -3,5 +3,12 @@
 }
 
 .bg-modal {
-  background-color: khaki;
+  background-color: khaki !important;
+}
+
+.heart:hover {
+  color: red !important;
+}
+.share:hover {
+  color: rgb(76, 162, 243) !important;
 }
