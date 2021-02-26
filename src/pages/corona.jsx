@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+
 class Corona extends Component {
   state = {
     listNegara: [],
@@ -13,7 +14,7 @@ class Corona extends Component {
   componentDidMount() {
     Axios.get("https://covid19.mathdro.id/api/countries")
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         this.setState({ listNegara: res.data.countries });
       })
       .catch((err) => {
@@ -35,7 +36,6 @@ class Corona extends Component {
     this.setState({ negarapilihan: e.target.value, loading: true });
     Axios.get(`https://covid19.mathdro.id/api/countries/${e.target.value}`)
       .then((res) => {
-        // console.log(res.data);
         this.setState({
           loading: false,
           confirmed: res.data.confirmed.value,
@@ -87,7 +87,7 @@ class Corona extends Component {
             </div>
             <div className="col-md-4 ">
               <div className="border-success border">
-                <div className="text-success text-center">Confirmed</div>
+                <div className="text-success text-center">Recovered</div>
                 <h1 className="text-success mt-3 text-center">
                   {this.state.loading ? "Loading" : this.state.recovered}
                 </h1>

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 // import Header from "../components/Header";
 import { Table } from "reactstrap";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import ModalComp from "./../components/Modal";
 class Home extends Component {
   state = {
+    isLogin: false,
     users: [
       {
         username: "dino",
@@ -39,6 +41,8 @@ class Home extends Component {
         id: 3,
       },
     ],
+    modal: false,
+    editmodal: false,
   };
 
   // renderUsers = this.state.users.map((val, index) => {
@@ -76,56 +80,6 @@ class Home extends Component {
                 onClick={this.onCancelClick}
               >
                 No
-              </button>
-            </td>
-          </tr>
-        );
-      } else if (index === this.state.indexEdit) {
-        return (
-          <tr key={index}>
-            <td>{index + 1}</td>
-            <td>
-              <input
-                name="username"
-                type="text"
-                placeholder="username"
-                className="form-control"
-                value={this.state.EditData.username}
-                onChange={this.onInputEditChage}
-              />
-            </td>
-            <td>
-              <input
-                name="email"
-                type="email"
-                placeholder="email"
-                className="form-control"
-                value={this.state.EditData.email}
-                onChange={this.onInputEditChage}
-              />
-            </td>
-            <td>
-              <select
-                name="role"
-                onChange={this.onInputEditChage}
-                value={this.state.EditData.role}
-                className="form-control"
-              >
-                {this.renderRole()}
-              </select>
-            </td>
-            <td>
-              <button
-                className="btn btn-success mx-2"
-                onClick={this.onSaveEditClick}
-              >
-                Save
-              </button>
-              <button
-                className="btn btn-primary mx-2"
-                onClick={this.onCancelEditClick}
-              >
-                Cancel
               </button>
             </td>
           </tr>
@@ -169,7 +123,11 @@ class Home extends Component {
   renderProducts = () => {
     return this.state.products.map((val) => {
       return (
-        <Link key={val.id} className="mx-4" to={`/product/` + val.id}>
+        <Link
+          key={val.id}
+          className="mx-4"
+          to={{ pathname: `/product/` + val.id, state: { category: "dino" } }}
+        >
           <button className="btn btn-success">{val.id}</button>
         </Link>
       );
@@ -216,6 +174,7 @@ class Home extends Component {
         roleInp: "",
         usernameInp: "",
         emailInp: "",
+        modal: false,
       });
     } else {
       toast.error("input harus diisi bro", {
@@ -228,6 +187,10 @@ class Home extends Component {
         progress: undefined,
       });
     }
+  };
+
+  onAddModalClick = () => {
+    this.setState({ modal: true });
   };
 
   onDeleteClick = (index) => {
@@ -252,7 +215,7 @@ class Home extends Component {
       email: users[index].email,
       role: users[index].role,
     };
-    this.setState({ indexEdit: index, EditData: EditData });
+    this.setState({ indexEdit: index, EditData: EditData, editmodal: true });
   };
 
   onCancelEditClick = () => {
@@ -263,6 +226,7 @@ class Home extends Component {
         role: "",
       },
       indexEdit: -1,
+      editmodal: false,
     });
   };
 
@@ -288,6 +252,7 @@ class Home extends Component {
       this.setState({
         users: usersdata,
         indexEdit: -1,
+        editmodal: false,
       });
 
       toast.success("berhasil edit ", {
@@ -320,14 +285,105 @@ class Home extends Component {
     }
   };
 
+  onLoginClick = () => {
+    if (this.state.users.length > 2) {
+      this.setState({ isLogin: true });
+    } else {
+      toast("data harus lebih dari 2");
+    }
+  };
+
+  toggle = () => {
+    this.setState({ modal: !this.state.modal });
+  };
+  toggleEdit = () => {
+    this.setState({ editmodal: !this.state.editmodal });
+  };
   // * input buat edit
   // * nanti displice seperti biasanya
   render() {
+    const { isLogin } = this.state;
+
+    if (isLogin) {
+      return <Redirect to="/corona" />;
+    }
     return (
       <div>
         {/* <Header /> */}
+        <ModalComp
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          title={"Add Users"}
+          saveData={this.onAddClick}
+        >
+          <input
+            name="usernameInp"
+            type="text"
+            placeholder="username"
+            className="form-control my-2"
+            value={this.state.usernameInp}
+            onChange={this.onInputChage}
+          />
+          <input
+            name="emailInp"
+            type="email"
+            placeholder="email"
+            className="form-control my-2"
+            value={this.state.emailInp}
+            onChange={this.onInputChage}
+          />
+          <select
+            name="roleInp"
+            onChange={this.onInputChage}
+            value={this.state.roleInp}
+            className="form-control my-2"
+          >
+            <option hidden value="">
+              pilih role
+            </option>
+            {this.renderRole()}
+          </select>
+        </ModalComp>
+        <ModalComp
+          isOpen={this.state.editmodal}
+          toggle={this.toggleEdit}
+          title={"Edit Users " + this.state.EditData.username}
+          saveData={this.onSaveEditClick}
+          Cancel={this.onCancelEditClick}
+          Edit={true}
+        >
+          <input
+            name="username"
+            type="text"
+            placeholder="username"
+            className="form-control"
+            value={this.state.EditData.username}
+            onChange={this.onInputEditChage}
+          />
+
+          <input
+            name="email"
+            type="email"
+            placeholder="email"
+            className="form-control"
+            value={this.state.EditData.email}
+            onChange={this.onInputEditChage}
+          />
+
+          <select
+            name="role"
+            onChange={this.onInputEditChage}
+            value={this.state.EditData.role}
+            className="form-control"
+          >
+            {this.renderRole()}
+          </select>
+        </ModalComp>
 
         <div className="pt-5 px-5 mx-5">
+          {/* <button className="btn btn-primary" onClick={this.onLoginClick}>
+            Login
+          </button> */}
           <Table striped>
             <thead>
               <tr>
@@ -338,52 +394,12 @@ class Home extends Component {
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
-              {this.renderUsers()}
-              <tr>
-                <td>#</td>
-                <td>
-                  <input
-                    name="usernameInp"
-                    type="text"
-                    placeholder="username"
-                    className="form-control"
-                    value={this.state.usernameInp}
-                    onChange={this.onInputChage}
-                  />
-                </td>
-                <td>
-                  <input
-                    name="emailInp"
-                    type="email"
-                    placeholder="email"
-                    className="form-control"
-                    value={this.state.emailInp}
-                    onChange={this.onInputChage}
-                  />
-                </td>
-                <td>
-                  <select
-                    name="roleInp"
-                    onChange={this.onInputChage}
-                    value={this.state.roleInp}
-                    className="form-control"
-                  >
-                    <option hidden value="">
-                      pilih role
-                    </option>
-                    {this.renderRole()}
-                  </select>
-                </td>
-                <td>
-                  <button onClick={this.onAddClick} className="btn btn-success">
-                    add
-                  </button>
-                </td>
-              </tr>
-            </tbody>
+            <tbody>{this.renderUsers()}</tbody>
           </Table>
-          {this.renderProducts()}
+          <button onClick={this.onAddModalClick} className="btn btn-success">
+            add
+          </button>
+          {/* {this.renderProducts()} */}
         </div>
       </div>
     );
