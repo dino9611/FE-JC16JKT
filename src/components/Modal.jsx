@@ -17,10 +17,9 @@ class ModalComp extends Component {
             {this.props.Edit ? "Save data" : "add Data"}
           </button>
           {this.props.Edit ? (
-            <button
-              className="btn btn-secondary"
-              onClick={this.props.Cancel}
-            ></button>
+            <button className="btn btn-secondary" onClick={this.props.Cancel}>
+              Cancel
+            </button>
           ) : null}
         </ModalFooter>
       </Modal>

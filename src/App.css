@@ -12,3 +12,8 @@
 .share:hover {
   color: rgb(76, 162, 243) !important;
 }
+
+.icon:hover {
+  cursor: pointer;
+  color: hotpink !important;
+}
