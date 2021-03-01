@@ -1,0 +1,66 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "foto": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+      "judul": "Makan makan",
+      "caption": "makan teratur"
+    },
+    {
+      "id": 2,
+      "foto": "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/1800x1200_potassium_foods_other.jpg?resize=750px:*",
+      "judul": "Makan makan",
+      "caption": "iya deh"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "heyhe commentbingint internet",
+      "postId": 1,
+      "userId": 1
+    },
+    {
+      "body": "some commentsaja",
+      "postId": 1,
+      "id": 2,
+      "userId": 1
+    },
+    {
+      "body": "coba",
+      "postId": 2,
+      "id": 3,
+      "userId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "dino",
+      "email": "dinorahman@ymail.com",
+      "role": "user",
+      "password": "1234"
+    },
+    {
+      "id": 2,
+      "username": "alghi",
+      "email": "alghi@google.com",
+      "role": "admin",
+      "password": "abcd"
+    },
+    {
+      "username": "willy",
+      "email": "qilly@gmail.com",
+      "role": "admin",
+      "password": "1234",
+      "id": 5
+    },
+    {
+      "username": "batmanrobinaa",
+      "email": "batmanas@gmail.com",
+      "role": "admin",
+      "password": "1234",
+      "id": 6
+    }
+  ]
+}

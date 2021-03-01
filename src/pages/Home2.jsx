@@ -35,6 +35,7 @@ class Home2 extends Component {
       },
     ],
   };
+
   //*  cara pertama tanpa component
   //   renderCard = () => {
   //     const { classes } = this.props;

@@ -4,21 +4,11 @@ import { Table } from "reactstrap";
 import { toast } from "react-toastify";
 import { Link, Redirect } from "react-router-dom";
 import ModalComp from "./../components/Modal";
+import Axios from "axios";
 class Home extends Component {
   state = {
     isLogin: false,
-    users: [
-      {
-        username: "dino",
-        email: "dinorahman@ymail.com",
-        role: "user",
-      },
-      {
-        username: "Alghi",
-        email: "alghi@google.com",
-        role: "admin",
-      },
-    ],
+    users: [],
     role: ["admin", "user"],
     usernameInp: "",
     emailInp: "",
@@ -26,10 +16,12 @@ class Home extends Component {
     indexdelete: -1,
     indexEdit: -1,
     EditData: {
+      id: 0,
       username: "",
       email: "",
       role: "",
     },
+
     products: [
       {
         id: 1,
@@ -45,22 +37,19 @@ class Home extends Component {
     editmodal: false,
   };
 
-  // renderUsers = this.state.users.map((val, index) => {
-  //   return (
-  //     <tr>
-  //       <td>{index + 1}</td>
-  //       <td>{val.username}</td>
-  //       <td>{val.email}</td>
-  //       <td>
-  //         <button className="btn btn-primary mx-2">Edit</button>
-  //         <button className="btn btn-danger mx-2">Delete</button>
-  //       </td>
-  //     </tr>
-  //   );
-  // });
+  // * component didmount untuk fethching data
 
-  // * boleh cara yang seperti dibawah ini untuk merender data
-  // * digunakan pada saat membutuhkan logic
+  componentDidMount() {
+    Axios.get(`http://localhost:5000/users`)
+      .then((res) => {
+        console.log(res);
+        this.setState({ users: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("internal server error");
+      });
+  }
 
   renderUsers = () => {
     return this.state.users.map((val, index) => {
@@ -72,7 +61,10 @@ class Home extends Component {
             <td>{val.email}</td>
             <td>{val.role}</td>
             <td>
-              <button className="btn btn-danger mx-2" onClick={this.onYesClick}>
+              <button
+                className="btn btn-danger mx-2"
+                onClick={() => this.onYesClick(val.id)}
+              >
                 Delete
               </button>
               <button
@@ -156,26 +148,36 @@ class Home extends Component {
     this.setState({ EditData: Editdata });
   };
   onAddClick = () => {
-    // const role = this.state.roleInp;
-    // const username = this.state.usernameInp;
-    // const email = this.state.emailInp;
-    // const users = this.state.users;
     const { roleInp, usernameInp, emailInp, users } = this.state;
     if (usernameInp && emailInp && roleInp) {
       let data = {
         username: usernameInp,
         email: emailInp,
         role: roleInp,
+        password: "1234",
       };
-      let usersdata = users;
-      usersdata.push(data);
-      this.setState({
-        users: usersdata,
-        roleInp: "",
-        usernameInp: "",
-        emailInp: "",
-        modal: false,
-      });
+      Axios.post(`http://localhost:5000/users`, data)
+        .then((res1) => {
+          console.log("post", res1);
+          Axios.get(`http://localhost:5000/users`)
+            .then((res) => {
+              console.log(res);
+              this.setState({
+                users: res.data,
+                roleInp: "",
+                usernameInp: "",
+                emailInp: "",
+                modal: false,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              toast.error("internal server error");
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       toast.error("input harus diisi bro", {
         position: "top-center",
@@ -199,11 +201,26 @@ class Home extends Component {
   onCancelClick = () => {
     this.setState({ indexdelete: -1 });
   };
-  onYesClick = () => {
-    const { users, indexdelete } = this.state;
-    let usersData = users;
-    usersData.splice(indexdelete, 1);
-    this.setState({ users: usersData, indexdelete: -1 });
+  onYesClick = (id) => {
+    // const { users, indexdelete } = this.state;
+    // let usersData = users;
+    // usersData.splice(indexdelete, 1);
+    Axios.delete(`http://localhost:5000/users/${id}`)
+      .then((res1) => {
+        console.log(res1);
+        Axios.get(`http://localhost:5000/users`)
+          .then((res) => {
+            console.log(res);
+            this.setState({ users: res.data, indexdelete: -1 });
+          })
+          .catch((err) => {
+            console.log(err);
+            toast.error("internal server error");
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   onEditClick = (index) => {
@@ -211,6 +228,7 @@ class Home extends Component {
     let users = this.state.users;
     EditData = {
       ...EditData,
+      id: users[index].id,
       username: users[index].username,
       email: users[index].email,
       role: users[index].role,
@@ -236,34 +254,53 @@ class Home extends Component {
     // const { username, email, role } = EditData;
     // !tanpa destructring
     let username = this.state.EditData.username;
+    let id = this.state.EditData.id;
     let email = this.state.EditData.email;
     let role = this.state.EditData.role;
-    let users = this.state.users;
-    let indexEdit = this.state.indexEdit;
+    // let users = this.state.users;
+    // let indexEdit = this.state.indexEdit;
     // *======================= *//
-    if (username && email && role) {
+    if (username && email && role && id) {
       let data = {
         username: username,
         email: email,
         role: role,
       };
-      let usersdata = users;
-      usersdata.splice(indexEdit, 1, data);
-      this.setState({
-        users: usersdata,
-        indexEdit: -1,
-        editmodal: false,
-      });
 
-      toast.success("berhasil edit ", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
+      Axios.patch(`http://localhost:5000/users/${id}`, data)
+        .then((res1) => {
+          console.log(res1.data);
+          Axios.get(`http://localhost:5000/users`)
+            .then((res) => {
+              console.log(res);
+              this.setState({
+                users: res.data,
+                indexEdit: -1,
+                editmodal: false,
+              });
+              toast.success("berhasil edit ", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              toast.error("internal server error");
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // this.setState({
+      //   users: usersdata,
+      //   indexEdit: -1,
+      //   editmodal: false,
+      // });
     } else {
       this.setState({
         EditData: {
@@ -301,6 +338,36 @@ class Home extends Component {
   };
   // * input buat edit
   // * nanti displice seperti biasanya
+
+  onUserSearchChange = (e) => {
+    Axios.get(`http://localhost:5000/users?username_like=${e.target.value}`)
+      .then((res) => {
+        this.setState({ users: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  onroleChange = (e) => {
+    if (e.target.value == "All") {
+      Axios.get(`http://localhost:5000/users`)
+        .then((res) => {
+          this.setState({ users: res.data });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      Axios.get(`http://localhost:5000/users?role=${e.target.value}`)
+        .then((res) => {
+          this.setState({ users: res.data });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   render() {
     const { isLogin } = this.state;
 
@@ -347,7 +414,11 @@ class Home extends Component {
         <ModalComp
           isOpen={this.state.editmodal}
           toggle={this.toggleEdit}
-          title={"Edit Users " + this.state.EditData.username}
+          title={`Edit Users  ${
+            this.state.indexEdit == -1
+              ? ""
+              : this.state.users[this.state.indexEdit].username
+          }`}
           saveData={this.onSaveEditClick}
           Cancel={this.onCancelEditClick}
           Edit={true}
@@ -384,6 +455,19 @@ class Home extends Component {
           {/* <button className="btn btn-primary" onClick={this.onLoginClick}>
             Login
           </button> */}
+          <input
+            placeholder="search user"
+            className="form-control"
+            onChange={this.onUserSearchChange}
+          />
+          <select className="form-control my-2" onChange={this.onroleChange}>
+            <option hidden value="">
+              pilih role
+            </option>
+            {this.renderRole()}
+            <option value="All">All</option>
+          </select>
+          <button className="btn btn-primary">Submit</button>
           <Table striped>
             <thead>
               <tr>
