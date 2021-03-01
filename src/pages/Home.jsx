@@ -38,8 +38,7 @@ class Home extends Component {
   };
 
   // * component didmount untuk fethching data
-
-  componentDidMount() {
+  fethcingdata = () => {
     Axios.get(`http://localhost:5000/users`)
       .then((res) => {
         console.log(res);
@@ -49,6 +48,10 @@ class Home extends Component {
         console.log(err);
         toast.error("internal server error");
       });
+  };
+
+  componentDidMount() {
+    this.fethcingdata();
   }
 
   renderUsers = () => {
@@ -148,7 +151,7 @@ class Home extends Component {
     this.setState({ EditData: Editdata });
   };
   onAddClick = () => {
-    const { roleInp, usernameInp, emailInp, users } = this.state;
+    const { roleInp, usernameInp, emailInp } = this.state;
     if (usernameInp && emailInp && roleInp) {
       let data = {
         username: usernameInp,
@@ -349,7 +352,7 @@ class Home extends Component {
       });
   };
   onroleChange = (e) => {
-    if (e.target.value == "All") {
+    if (e.target.value === "All") {
       Axios.get(`http://localhost:5000/users`)
         .then((res) => {
           this.setState({ users: res.data });
@@ -415,7 +418,7 @@ class Home extends Component {
           isOpen={this.state.editmodal}
           toggle={this.toggleEdit}
           title={`Edit Users  ${
-            this.state.indexEdit == -1
+            this.state.indexEdit === -1
               ? ""
               : this.state.users[this.state.indexEdit].username
           }`}
