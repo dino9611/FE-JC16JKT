@@ -467,7 +467,7 @@ class Home extends Component {
             {this.renderRole()}
             <option value="All">All</option>
           </select>
-          <button className="btn btn-primary">Submits</button>
+          <button className="btn btn-primary">Submitsa</button>
           <Table striped>
             <thead>
               <tr>
