@@ -1,6 +1,6 @@
-# Day7 React
+# Day11 React
 
-React JS CRUD
+React Redux
 
 # Getting Started with Create React App
 
