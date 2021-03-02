@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { Link, Redirect } from "react-router-dom";
 import ModalComp from "./../components/Modal";
 import Axios from "axios";
+import { connect } from "react-redux";
+import { TambahAction, KurangAction } from "./../redux/actions";
 class Home extends Component {
   state = {
     isLogin: false,
@@ -371,9 +373,13 @@ class Home extends Component {
     }
   };
 
+  onClickTambah = () => {
+    this.props.TambahAction(10);
+  };
+
   render() {
     const { isLogin } = this.state;
-
+    console.log("render");
     if (isLogin) {
       return <Redirect to="/corona" />;
     }
@@ -453,7 +459,18 @@ class Home extends Component {
             {this.renderRole()}
           </select>
         </ModalComp>
-
+        <div>
+          <button
+            className="btn btn-primary mx-3"
+            onClick={this.props.KurangAction}
+          >
+            -
+          </button>
+          {this.props.Bebas}
+          <button className="btn btn-primary mx-3" onClick={this.onClickTambah}>
+            +
+          </button>
+        </div>
         <div className="pt-5 px-5 mx-5">
           {/* <button className="btn btn-primary" onClick={this.onLoginClick}>
             Login
@@ -486,6 +503,7 @@ class Home extends Component {
           <button onClick={this.onAddModalClick} className="btn btn-success">
             add
           </button>
+
           {/* {this.renderProducts()} */}
         </div>
       </div>
@@ -493,4 +511,10 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const MapStatetoProps = (state) => {
+  return {
+    Bebas: state.Angka,
+  };
+};
+
+export default connect(MapStatetoProps, { TambahAction, KurangAction })(Home);

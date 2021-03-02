@@ -9,6 +9,7 @@ import About from "./pages/about";
 import Product from "./pages/product";
 import Corona from "./pages/corona";
 import Home2 from "./pages/Home2";
+import Login from "./pages/login";
 class App extends Component {
   state = {
     // page: "/",
@@ -29,6 +30,7 @@ class App extends Component {
             <Route path="/product/:bebas" component={Product} />
             <Route path="/corona" component={Corona} />
             <Route path="/home2" component={Home2} />
+            <Route path="/login" component={Login} />
           </Switch>
         </div>
         <ToastContainer />

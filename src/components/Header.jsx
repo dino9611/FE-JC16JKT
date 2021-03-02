@@ -13,7 +13,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { Link, NavLink as LinkRouter } from "react-router-dom";
-
+import { connect } from "react-redux";
 class Header extends Component {
   state = {
     isOpen: false,
@@ -25,7 +25,7 @@ class Header extends Component {
     return (
       <Navbar color="dark" dark expand="md">
         <NavbarBrand>
-          <Link to="/">CRUD</Link>
+          <Link to="/">{this.props.Bebas}</Link>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
@@ -51,13 +51,21 @@ class Header extends Component {
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Options
+                {this.props.DataUser.username
+                  ? this.props.DataUser.username
+                  : "blm log"}
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
+                <DropdownItem></DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>LogOut</DropdownItem>
+                {this.props.DataUser.islogin ? (
+                  <DropdownItem>Logout</DropdownItem>
+                ) : (
+                  <Link to="/login">
+                    <DropdownItem>Login</DropdownItem>
+                  </Link>
+                )}
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
@@ -66,5 +74,10 @@ class Header extends Component {
     );
   }
 }
-
-export default Header;
+const MapStatetoProps = (state) => {
+  return {
+    Bebas: state.Angka,
+    DataUser: state.User,
+  };
+};
+export default connect(MapStatetoProps)(Header);
