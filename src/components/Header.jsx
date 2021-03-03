@@ -60,7 +60,7 @@ class Header extends Component {
                 <DropdownItem></DropdownItem>
                 <DropdownItem divider />
                 {this.props.DataUser.islogin ? (
-                  <DropdownItem>Logout</DropdownItem>
+                  <DropdownItem >Logout</DropdownItem>
                 ) : (
                   <Link to="/login">
                     <DropdownItem>Login</DropdownItem>
