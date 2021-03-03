@@ -5,3 +5,9 @@ export const LoginAction = (input) => {
     payload: input,
   };
 };
+
+export const LogoutAction = () => {
+  return {
+    type: "LOGOUT",
+  };
+};

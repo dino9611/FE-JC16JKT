@@ -7,6 +7,9 @@ import ModalComp from "./../components/Modal";
 import Axios from "axios";
 import { connect } from "react-redux";
 import { TambahAction, KurangAction } from "./../redux/actions";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 class Home extends Component {
   state = {
     isLogin: false,
@@ -197,7 +200,14 @@ class Home extends Component {
   };
 
   onAddModalClick = () => {
-    this.setState({ modal: true });
+    if (this.props.Datausers.islogin) {
+      this.setState({ modal: true });
+    } else {
+      MySwal.fire({
+        icon: "error",
+        title: "Harus Login dulu",
+      });
+    }
   };
 
   onDeleteClick = (index) => {
@@ -389,7 +399,7 @@ class Home extends Component {
         <ModalComp
           isOpen={this.state.modal}
           toggle={this.toggle}
-          title={"Add Users"}
+          title={"Add Data"}
           saveData={this.onAddClick}
         >
           <input
@@ -514,6 +524,7 @@ class Home extends Component {
 const MapStatetoProps = (state) => {
   return {
     Bebas: state.Angka,
+    Datausers: state.User,
   };
 };
 

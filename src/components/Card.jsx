@@ -33,10 +33,10 @@ class Cardcomp extends Component {
           </Typography>
         </CardContent>
         <CardActions>
-          <IconButton className="heart">
+          <IconButton className="heart" onClick={this.props.delete}>
             <BiTrash />
           </IconButton>
-          <IconButton className="share">
+          <IconButton className="share" onClick={this.props.edit}>
             <AiTwotoneEdit />
           </IconButton>
         </CardActions>

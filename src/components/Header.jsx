@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import { Link, NavLink as LinkRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { LogoutAction } from "./../redux/actions";
 class Header extends Component {
   state = {
     isOpen: false,
@@ -60,7 +61,9 @@ class Header extends Component {
                 <DropdownItem></DropdownItem>
                 <DropdownItem divider />
                 {this.props.DataUser.islogin ? (
-                  <DropdownItem >Logout</DropdownItem>
+                  <DropdownItem onClick={this.props.LogoutAction}>
+                    Logout
+                  </DropdownItem>
                 ) : (
                   <Link to="/login">
                     <DropdownItem>Login</DropdownItem>
@@ -80,4 +83,4 @@ const MapStatetoProps = (state) => {
     DataUser: state.User,
   };
 };
-export default connect(MapStatetoProps)(Header);
+export default connect(MapStatetoProps, { LogoutAction })(Header);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
-
+import Proptypes from "prop-types";
 class ModalComp extends Component {
   state = {};
   render() {
@@ -26,5 +26,14 @@ class ModalComp extends Component {
     );
   }
 }
+
+ModalComp.propTypes = {
+  isOpen: Proptypes.func,
+  title: Proptypes.string,
+  Edit: Proptypes.bool,
+  Cancel: Proptypes.func,
+  saveData: Proptypes.func,
+  toggle: Proptypes.func,
+};
 
 export default ModalComp;

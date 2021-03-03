@@ -1,10 +1,10 @@
 {
   "posts": [
     {
-      "id": 1,
       "foto": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      "judul": "Makan makan",
-      "caption": "makan teratur"
+      "judul": "Makan nasi goreng",
+      "caption": "makan teratur",
+      "id": 1
     },
     {
       "id": 2,
